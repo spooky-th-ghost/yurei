@@ -7,6 +7,8 @@ use components::*;
 mod systems;
 use systems::*;
 
+pub mod prelude;
+
 pub struct YureiPlugin;
 
 impl Plugin for YureiPlugin {
