@@ -2,8 +2,9 @@
 name = "yurei"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/spooky-th-ghost/yurei"
+description = "a WIP high level wrapper around (bevy_rapier3d)[https://crates.io/crates/bevy_rapier3d] created to remove some of the boilerplate while prototyping 3d platformers with [bevy](https://crates.io/crates/bevy)"
 
 [dependencies]
 bevy = "0.9.1"
