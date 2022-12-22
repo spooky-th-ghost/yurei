@@ -12,12 +12,16 @@ pub struct YureiPlugin;
 impl Plugin for YureiPlugin {
     fn build(&self, app: &mut App) {
         app.add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
+            .insert_resource(RapierConfiguration {
+                gravity: Vec3::Y * -30.0,
+                ..default()
+            })
             .register_type::<Hover>()
             .register_type::<Movement>()
             .add_system(handle_hover)
             .add_system(handle_rotation)
             .add_system(handle_movement)
-            .add_system(handle_damping);
+            .add_system(handle_damping.after(handle_movement));
     }
 }
 
