@@ -18,7 +18,7 @@ pub fn handle_hover(
     for (
         mut external_force,
         mut external_impulse,
-        mut velocity,
+        velocity,
         transform,
         hover,
         is_grounded,
@@ -100,7 +100,7 @@ pub fn handle_movement(mut movement_query: Query<(&mut ExternalForce, &Movement,
     }
 }
 
-pub fn handle_rotation(
+fn handle_rotation(
     time: Res<Time>,
     mut query: Query<(&Movement, &mut Transform), With<RotationDriver>>,
 ) {
