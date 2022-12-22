@@ -85,12 +85,35 @@ impl YureiBundle {
                 goal_velocity: Vec3::ZERO,
                 direction: Vec3::ZERO,
                 acceleration: 1000.0,
-                deceleration: 25.0,
-                top_speed: 200.0,
+                deceleration: 50.0,
+                top_speed: 100.0,
             },
             rotation_driver: RotationDriver,
             collider: Collider::capsule_y(1.0, 1.0),
             transform: Transform::from_xyz(position.x, position.y, position.x),
+        }
+    }
+}
+
+impl Default for YureiBundle {
+    fn default() -> Self {
+        YureiBundle {
+            rigidbody: RigidBody::Dynamic,
+            velocity: Velocity::default(),
+            external_force: ExternalForce::default(),
+            external_impulse: ExternalImpulse::default(),
+            locked_axes: LockedAxes::ROTATION_LOCKED,
+            hover: Hover::default(),
+            movement: Movement {
+                goal_velocity: Vec3::ZERO,
+                direction: Vec3::ZERO,
+                acceleration: 1000.0,
+                deceleration: 50.0,
+                top_speed: 100.0,
+            },
+            rotation_driver: RotationDriver,
+            collider: Collider::capsule_y(1.0, 1.0),
+            transform: Transform::from_xyz(0.0, 0.0, 0.0),
         }
     }
 }
