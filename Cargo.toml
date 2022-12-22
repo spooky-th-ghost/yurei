@@ -1,10 +1,10 @@
 [package]
 name = "yurei"
-version = "0.2.2"
+version = "0.2.21"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/spooky-th-ghost/yurei"
-description = "a WIP high level wrapper around (bevy_rapier3d)[https://crates.io/crates/bevy_rapier3d] created to remove some of the boilerplate while prototyping 3d platformers with [bevy](https://crates.io/crates/bevy)"
+description = "a WIP high level wrapper around bevy_rapier3d created to remove some of the boilerplate while prototyping 3d platformers with bevy"
 
 [dependencies]
 bevy = "0.9.1"

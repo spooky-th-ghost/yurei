@@ -1,11 +1,11 @@
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 
-mod components;
-use components::*;
+pub mod components;
+pub use components::*;
 
-mod systems;
-use systems::*;
+pub mod systems;
+pub use systems::*;
 
 pub struct YureiPlugin;
 
@@ -22,10 +22,10 @@ impl Plugin for YureiPlugin {
 }
 
 pub mod prelude {
-    pub(crate) use crate::Grounded;
-    pub(crate) use crate::Hover;
-    pub(crate) use crate::Movement;
-    pub(crate) use crate::RotationDriver;
-    pub(crate) use crate::YureiBundle;
-    pub(crate) use crate::YureiPlugin;
+    pub use crate::Grounded;
+    pub use crate::Hover;
+    pub use crate::Movement;
+    pub use crate::RotationDriver;
+    pub use crate::YureiBundle;
+    pub use crate::YureiPlugin;
 }
