@@ -7,8 +7,6 @@ use components::*;
 mod systems;
 use systems::*;
 
-pub mod prelude;
-
 pub struct YureiPlugin;
 
 impl Plugin for YureiPlugin {
@@ -21,4 +19,13 @@ impl Plugin for YureiPlugin {
             .add_system(handle_movement)
             .add_system(handle_damping);
     }
+}
+
+pub mod prelude {
+    pub(crate) use crate::Grounded;
+    pub(crate) use crate::Hover;
+    pub(crate) use crate::Movement;
+    pub(crate) use crate::RotationDriver;
+    pub(crate) use crate::YureiBundle;
+    pub(crate) use crate::YureiPlugin;
 }
