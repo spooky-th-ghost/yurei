@@ -100,7 +100,7 @@ pub fn handle_movement(mut movement_query: Query<(&mut ExternalForce, &Movement,
     }
 }
 
-fn handle_rotation(
+pub fn handle_rotation(
     time: Res<Time>,
     mut query: Query<(&Movement, &mut Transform), With<RotationDriver>>,
 ) {
