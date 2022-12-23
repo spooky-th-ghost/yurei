@@ -20,6 +20,7 @@ impl Plugin for YureiPlugin {
             .register_type::<Movement>()
             .add_system(handle_hover)
             .add_system(handle_rotation)
+            .add_system(handle_moving_platforms)
             .add_system(handle_movement)
             .add_system(handle_damping.after(handle_movement));
     }

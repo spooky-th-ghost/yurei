@@ -14,11 +14,12 @@ pub fn handle_hover(
         Option<&Grounded>,
         Entity,
     )>,
+    moving_platform_query: Query<&Velocity, (With<MovingPlatformDriver>, Without<Hover>)>,
 ) {
     for (
         mut external_force,
         mut external_impulse,
-        velocity,
+        mut velocity,
         transform,
         hover,
         is_grounded,
@@ -40,6 +41,10 @@ pub fn handle_hover(
                 if let None = is_grounded {
                     commands.entity(hover_entity).insert(Grounded);
                 }
+            }
+            if let Ok(platform_velocity) = moving_platform_query.get(entity) {
+                println!("Found a moving platform");
+                velocity.linvel += platform_velocity.linvel / 2.0;
             }
         } else {
             external_force.force.y = 0.0;
@@ -108,6 +113,24 @@ pub fn handle_rotation(
         if movement.direction != Vec3::ZERO {
             let target = transform.translation - movement.direction;
             transform.look_at(target, Vec3::Y);
+        }
+    }
+}
+
+pub fn handle_moving_platforms(
+    time: Res<Time>,
+    mut query: Query<(&mut MovingPlatformDriver, &mut Transform)>,
+) {
+    for (mut moving_platform, mut transform) in &mut query {
+        if moving_platform.moving {
+            let new_position = transform.translation.lerp(
+                moving_platform.current_target_location(),
+                time.delta_seconds(),
+            );
+
+            transform.translation = new_position;
+
+            moving_platform.update(new_position);
         }
     }
 }

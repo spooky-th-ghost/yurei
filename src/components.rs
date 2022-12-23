@@ -56,6 +56,61 @@ impl Default for Hover {
     }
 }
 
+#[derive(Component)]
+pub struct MovingPlatformDriver {
+    pub targets: Vec<Vec3>,
+    pub target_index: usize,
+    pub distance_threshhold: f32,
+    pub moving: bool,
+}
+
+impl MovingPlatformDriver {
+    pub fn with_targets(targets: Vec<Vec3>) -> Self {
+        MovingPlatformDriver {
+            targets,
+            ..default()
+        }
+    }
+
+    pub fn current_target_location(&self) -> Vec3 {
+        self.targets[self.target_index]
+    }
+
+    pub fn update(&mut self, current_position: Vec3) {
+        if self.should_cycle(current_position) {
+            self.cycle_targets();
+        }
+    }
+
+    fn should_cycle(&self, current_position: Vec3) -> bool {
+        self.distance_to_target(current_position) < self.distance_threshhold
+    }
+
+    fn distance_to_target(&self, current_position: Vec3) -> f32 {
+        self.targets[self.target_index].distance(current_position)
+    }
+
+    fn cycle_targets(&mut self) {
+        let new_index = self.target_index + 1;
+        if new_index > self.targets.len() - 1 {
+            self.target_index = 0;
+        } else {
+            self.target_index = new_index;
+        }
+    }
+}
+
+impl Default for MovingPlatformDriver {
+    fn default() -> Self {
+        MovingPlatformDriver {
+            targets: Vec::new(),
+            target_index: 0,
+            distance_threshhold: 0.2,
+            moving: true,
+        }
+    }
+}
+
 /// Bundle containing all of the necessary components to allow force based movement/rotation for a
 /// character
 #[derive(Bundle)]
