@@ -7,7 +7,7 @@ pub use components::*;
 pub mod systems;
 pub use systems::*;
 
-pub struct YureiPluginWithState<T>(T);
+pub struct YureiPluginWithState<T>(pub T);
 
 impl<T> Plugin for YureiPluginWithState<T>
 where
