@@ -39,7 +39,7 @@ where
 
 pub struct YureiPlugin;
 
-impl YureiPlugin {
+impl Plugin for YureiPlugin {
     fn build(&self, app: &mut App) {
         app.add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
             .insert_resource(RapierConfiguration {
@@ -62,4 +62,5 @@ pub mod prelude {
     pub use crate::RotationDriver;
     pub use crate::YureiBundle;
     pub use crate::YureiPlugin;
+    pub use crate::YureiPluginWithState;
 }
